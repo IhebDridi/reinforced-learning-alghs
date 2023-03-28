@@ -12,3 +12,31 @@ There are several algorithms that can be used to solve the multi-armed bandit pr
 
 ### The Epsilon-Greedy algorithm:
 In general, the Epsilon-Greedy algorithm is considered one of the simplest reinforcement learning algorithms to implement, as it only requires a few lines of code and doesn't involve complex mathematical computations.
+
+### Epsilon-Greedy implementation: 
+The Epsilon-Greedy algorithm is a simple algorithm that balances exploration and exploitation in a multi-armed bandit problem. Here's a step-by-step guide on how to implement it:
+
+    Initialize a list of N arms, each with an unknown reward probability.
+
+    Set a value for epsilon, which represents the probability of exploration. For example, if epsilon = 0.1, then 10% of the time we will explore a random arm, and 90% of the time we will choose the arm with the highest estimated reward.
+
+    For each round or iteration:
+    a. With probability epsilon, choose a random arm to explore.
+    b. Otherwise, choose the arm with the highest estimated reward.
+    c. Observe the reward from the chosen arm.
+    d. Update the estimated reward for the chosen arm based on the observed reward.
+
+    Repeat step 3 for a fixed number of rounds or until convergence.
+
+Here are some variables you will need to use:
+
+    N: the number of arms
+    epsilon: the probability of exploration
+    Q: a list of length N to store the estimated reward for each arm
+    N_pulls: a list of length N to store the number of times each arm has been pulled
+    a function to calculate the average reward for each arm
+
+To implement step 3d, you will need to update the estimated reward for the chosen arm using the following formula:
+Q[a] = Q[a] + (r - Q[a]) / N_pulls[a]
+
+where a is the index of the chosen arm, r is the observed reward, and N_pulls[a] is the number of times the arm has been pulled before.
